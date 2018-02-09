@@ -1,0 +1,32 @@
+Instalar Versão mais Recente do Nginx no CentOS 7
+Instalar Versão mais Recente do Nginx no CentOS 7
+O Nginx não faz parte dos repositórios padrão do CentOS 7. Para isso temos que instalar e adicionar repositórios adicionais. Mas é muito simples, isso porque o Nginx tem seus próprios repositórios.
+
+Os repositórios Nginx
+A sempre dois repositórios disponíveis, as versões são: Estável e Mainline que a ultima versão do Nginx com novos recursos. A mais recente versão do Nginx é sempre encontrada no repositório chamado de Mainline.
+
+Já o repositório Estável, tem a versão em que tudo foi testado e aprovado para uso em produção, todas as versões passam pelo repositório Nginx Mainline e depois de testadas são enviadas para o repositório Estável.
+
+Se você precisa de algum recurso novo no Nginx, você precisa do Mainline então vamos começar editando nossos repositórios:
+
+sudo vi /etc/yum.repos.d/nginx.repo
+Copie as linhas abaixo para o arquivo e salve:
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+Simples não? Agora é só instalar o Nginx da mesma forma de sempre:
+
+sudo yum install nginx
+Liberando acesso ao Nginx no firewall
+Por padrão o CentOS 7 vem com o acesso as portas Web 80 e 443 bloqueadas, vamos liberar com os seguintes comandos:
+
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --permanent --zone=public --add-service=https
+sudo firewall-cmd --reload
+E pronto! Agora seu servidor Nginx com a ultima versão já esta instalado e você já pode configura-lo e acessa-lo pelo seu navegador.
+
+Versão Estável do Nginx
+Se você deseja a versão estável do Nginx, basta mudar o repositório para esse:
