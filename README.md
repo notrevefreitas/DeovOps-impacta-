@@ -1,3 +1,3 @@
 # DeovOps-impacta-
 função aluno Everton freitas 
-faculdade imapcta 
+impacta tecnologia Everton 
